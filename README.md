@@ -1,85 +1,118 @@
-# BikeFlow: Análisis de Dinámicas de Movilidad Urbana y Demanda de Transporte Sustentable
+# Proyecto: Análisis de Movilidad y Patrones de Uso en Sistemas de Bicicletas Compartidas (Capital Bikeshare)
 
-## 1. Integrantes
-* **Martín Lobos**
-* **Iván Papic**
-
----
-
-## 2. Descripción del Problema
-En las ciudades modernas, el uso de sistemas de bicicletas públicas compartidas ha crecido aceleradamente como una alternativa limpia, eficiente y saludable frente al transporte tradicional. Sin embargo, los operadores enfrentan desafíos constantes debido a la variabilidad de la demanda: existen estaciones que sufren desabastecimiento en horas pico mientras otras quedan sobrepobladas.
-
-Este fenómeno depende fuertemente de variables como las condiciones meteorológicas (temperatura, lluvia, humedad), el horario y la distinción entre días laborables y fines de semana.
+**Asignatura:** EIN092B Visualización de Datos  
+**Profesor:** Jesús A. Parra  
+**Institución:** Universidad Técnica Federico Santa María (UTFSM)  
+**Semestre:** 2026-II  
+**Entregable:** Avance 1 - Formulación del Proyecto  
 
 ---
 
-## 3. Motivación
-Estudiar los patrones de uso de las bicicletas públicas permite comprender cómo se desplazan los ciudadanos y cómo factores externos alteran sus patrones de movilidad. Los hallazgos derivados de este análisis facilitan:
-* La toma de decisiones en la planificación urbana y redistribución logística.
-* La optimización del servicio para los usuarios finales.
-* La promoción de estrategias sustentables alineadas con el concepto de *Smart Cities*.
+## 📋 Diapositiva 1: Proyecto, Problema y Motivación
+
+* **Nombre del Proyecto:** Análisis de Movilidad y Patrones de Uso en Sistemas de Bicicletas Compartidas (*Capital Bikeshare*).
+* **Integrantes:** Martin Lobos *(y equipo)*.
+* **Contexto:** Las zonas urbanas enfrentan serios desafíos de congestión vehicular y contaminación. Los sistemas de micro-movilidad urbana, como las bicicletas compartidas, han emergido como una solución ecológica, flexible y sustentable para el transporte diario.
+* **Problemática General:** Para que el sistema sea eficiente y rentable, los operadores necesitan entender las marcadas diferencias de comportamiento entre usuarios registrados (de uso diario/rutinario) y casuales (de uso turístico/recreativo). Esto afecta directamente la logística de redistribución de bicicletas entre estaciones (*rebalancing*), la disponibilidad de flotas y el mantenimiento preventivo.
+* **¿Por qué vale la pena estudiar este problema?:** Permite optimizar la toma de decisiones operativas y logísticas del sistema de transporte. Al comprender los patrones de demanda temporal y geográfica de cada perfil de usuario, es posible prevenir estaciones desabastecidas o colapsadas, mejorar la experiencia de viaje urbana y promover una movilidad sostenible fundamentada en datos.
 
 ---
 
-## 4. Pregunta del Proyecto y Estructura X, Y, T
+## 🎯 Diapositiva 2: Pregunta y Alcance
 
-### Pregunta Principal
-¿Cómo influyen las condiciones meteorológicas, el momento del día y el tipo de jornada (**$X$**) en el volumen de demanda de bicicletas públicas (**$Y$**) a lo largo de las distintas franjas horarias y días de la semana (**$T$**)?
-
-### Componentes de la Pregunta:
-* **$X$ (Variables Explicativas / Disponibles)**: 
-  * Condiciones meteorológicas (temperatura, sensación térmica, humedad, velocidad del viento, clima general).
-  * Tipo de jornada (día laboral, fin de semana, festivo).
-  * Estación de origen y destino.
-  * Tipo de usuario (casual o registrado).
-* **$Y$ (Objetivo / Fenómeno de Interés)**: 
-  * Demanda total de viajes en bicicleta (volumen de uso).
-* **$T$ (Contexto Temporal)**: 
-  * Distribución horaria durante el día y evolución mensual/anual de los datos recopilados.
+* **Pregunta Principal:**  
+  > ¿De qué manera varían la demanda, la duración de los trayectos y los patrones temporales de uso del sistema de bicicletas compartidas entre usuarios registrados y casuales según la hora, el día de la semana y las estaciones de origen/destino?
+* **Fenómeno Específico a Estudiar:** Patrones de comportamiento, dinámica de viajes y diferencias en el uso del servicio según el tipo de usuario (suscritos vs. casuales).
+* **Población, Región o Contexto:** Usuarios del sistema de micro-movilidad e infraestructura de estaciones de bicicletas compartidas (*Capital Bikeshare*).
+* **Período de Análisis:** Ciclo diario por horas (0 a 23 hrs) y diferenciación entre días laborales (*weekdays*) y fines de semana (*weekends*) dentro del registro histórico del dataset.
+* **Límites Iniciales del Proyecto:**
+  - Se analizarán exclusivamente los viajes válidos con una duración igual o superior a 60 segundos.
+  - Quedan fuera del alcance las rutas de mantenimiento técnico/inspección de personal y los trayectos hacia o desde bodegas/estaciones de prueba.
+  - En esta etapa no se contemplan variables meteorológicas externas ni modelos predictivos en tiempo real.
 
 ---
 
-## 5. Alcance e Identificación de Límites
+## 📐 Diapositiva 3: Estructura X, Y y T
 
-### Dentro del Alcance
-* Análisis de patrones de uso según horarios pico y tipo de día (hábiles vs. fines de semana).
-* Evaluación del impacto del clima y la temperatura en el volumen de trayectos.
-* Identificación de diferencias de comportamiento entre usuarios casuales y miembros registrados.
-* Visualización espacial de las estaciones con mayor concentración de inicio de viajes.
+### Identificación de Componentes
+* **$X$ (Variables Explicativas / Información Disponible):**
+  - Tipo de usuario (`Member Type`: Registrado vs. Casual).
+  - Estación de origen y estación de destino (`Start Station`, `End Station`).
+  - Identificador del vehículo (`Bike Number`).
+  - Componentes de tiempo extraídos (Hora del día y día de la semana).
+* **$Y$ (Objetivo / Fenómeno de Interés):**
+  - Demanda total y volumen de viajes por intervalo.
+  - Duración de los trayectos (`Duration`).
+  - Flujos y concentración de viajes entre pares de estaciones.
+* **$T$ (Contexto Temporal):**
+  - Distribución por horas del día (0 a 23 hrs) y comparativa entre días hábiles y fines de semana dentro del período cubierto por el dataset.
 
-### Fuera del Alcance
-* Modelos predictivos de mantenimiento técnico o desgaste de la flota.
-* Optimización de rutas de camiones para el rebalanceo de bicicletas en tiempo real.
-* Análisis financiero de costos, tarifas o renting de las bicicletas.
-
----
-
-## 6. Fuente y Descripción del Dataset
-
-* **Fuente**: Dataset oficial de *Capital Bikeshare* (Washington D.C., EE. UU.) / [Kaggle Bikeshare Dataset](https://www.capitalbikeshare.com/system-data).
-* **Unidad de Observación**: Cada fila representa un **viaje individual** registrado por el sistema.
-* **Cobertura Temporal/Espacial**: Registros históricos de viajes en la red urbana de Capital Bikeshare.
-* **Principales Variables**:
-  * `started_at` / `ended_at`: Timestamp de inicio y término del trayecto.
-  * `start_station_name` / `end_station_name`: Nombre e identificador de las estaciones.
-  * `member_casual`: Categoría del usuario (`member` o `casual`).
-  * `rideable_type`: Tipo de bicicleta (clásica o eléctrica).
-
-> **Nota sobre los datos**: Debido a restricciones de tamaño de GitHub, el archivo de datos sin procesar (`202607-capitalbikeshare-tripdata.csv`) no está almacenado directamente en este repositorio. Los datos deben ser descargados de la fuente oficial y ubicarse dentro de la carpeta `data/raw/`.
+### Integración en la Pregunta del Proyecto
+La estructura conecta los datos de entrada **($X$)** con el fenómeno analizado **($Y$)** en un período acotado **($T$)**: explica de qué forma las características del usuario, ubicación e identificación de bicicletas **($X$)** influyen en la demanda y duración del trayecto **($Y$)** a lo largo del ciclo diario y semanal **($T$)**.
 
 ---
 
-## 7. Estructura del Repositorio
+## 📊 Diapositiva 4: Dataset y Narrativa Inicial
+
+* **Fuente de los Datos:** Registro histórico procesado del sistema *Capital Bikeshare* (Washington D.C.).
+* **Cantidad Aproximada de Registros:** ~650.000 filas / trayectos registrados.
+* **Unidad de Observación:** Un viaje individual realizado en el sistema con una duración $\ge 60$ segundos.
+* **Cobertura Temporal y Espacial:** Cobertura espacial urbana basada en la red de estaciones del sistema; cobertura temporal continua por horas y días según los registros del dataset.
+* **Principales Variables:**
+  - `Duration`: Duración del trayecto (en segundos).
+  - `Start Date` / `End Date`: Timestamp de inicio y término del viaje.
+  - `Start Station` / `End Station`: Nombre e ID de las estaciones de origen y destino.
+  - `Bike Number`: Identificador único de la bicicleta.
+  - `Member Type`: Tipo de usuario (*Registered* vs. *Casual*).
+
+### Muestra Representativa del Dataset
+| Duration | Start Date | End Date | Start Station | End Station | Bike Number | Member Type |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 623 | 2026-07-01 08:15:00 | 2026-07-01 08:25:23 | 31101 - 14th & V St NW | 31200 - Massachusetts Ave | W00124 | Registered |
+| 1450 | 2026-07-01 14:30:10 | 2026-07-01 14:54:20 | 31201 - Smithsonian Metro | 31202 - Lincoln Memorial | W00892 | Casual |
+
+### Narrative Inicial
+* Los datos capturan la **"respiración urbana"** de la ciudad a través del transporte sobre ruedas.
+* La historia esperada revelará dos comportamientos urbanos opuestos: por un lado, la rutina eficiente y acelerada del trabajador/estudiante (*Registered*) enfocado en horas punta de desplazamiento laboral; por otro lado, el ritmo pausado del visitante o ciclista de fin de semana (*Casual*) enfocado en rutas turísticas o recreativas de mayor duración.
+
+---
+
+## 🎨 Diapositiva 5: Pregunta, Datos y Potencial Visual
+
+### Coherencia entre Pregunta y Datos
+* **Variables $X$ (Explicativas):** `Member Type` (segmentación del perfil), `Start Station` / `End Station` (origen-destino espacial) y `Bike Number`.
+* **Variable $Y$ (Fenómeno de Interés):** `Duration` (duración continua de trayectos) y el conteo agrupado de registros (demanda acumulada y flujos).
+* **Dimensión $T$ (Contexto Temporal):** Horas extraídas de `Start Date` / `End Date` (0–23 hrs) y diferenciación entre días hábiles y fines de semana.
+
+### Posibles Limitaciones de los Datos
+* **Falta de datos meteorológicos:** El dataset original no incluye variables ambientales como lluvia o temperatura, lo cual impide correlacionar caídas de demanda con el clima.
+* **Ausencia de trayecto exacto (GPS):** Se conoce la estación de origen y destino, pero no la ruta geográfica precisa seguida por el ciclista durante el trayecto.
+* **Sesgo por duración acotada:** Se excluyen viajes menores a 60 segundos, perdiendo visibilidad sobre re-acoples fallidos por fallas en anclajes de estaciones.
+
+### Primeras Ideas sobre Dimensiones a Visualizar
+* **Matriz de Calor / Heatmap (Hora vs. Día de la semana):** Para visibilizar picos de demanda según el tipo de usuario (horas punta vs. fin de semana).
+* **Histograma / Boxplot Comparativo:** Distribución de la duración del viaje (`Duration`) según la membresía (`Registered` vs. `Casual`).
+* **Matriz Origen-Destino / Gráfico de Flujo:** Top estaciones con mayor volumen de salida y llegada para identificar rutas frecuentes y patrones espaciales.
+
+---
+
+## 📁 Estructura del Repositorio GitHub
 
 ```text
-Proyecto-Visualizacion/
-├── app/                  # Aplicación interactiva (Streamlit / Dash)
+proyecto-visualizacion-bicicletas/
+│
 ├── data/
-│   ├── raw/              # Datos originales sin modificar (no rastreados por Git)
-│   └── processed/        # Datos procesados y limpios para análisis
-├── figures/              # Gráficos, diagramas y exportaciones visuales
-├── notebooks/            # Notebooks Jupyter para EDA y pruebas
-│   └── 01_exploracion.ipynb
-├── src/                  # Scripts en Python y funciones reutilizables
-├── .gitignore            # Exclusión de archivos pesados (*.csv) y temporales
-└── README.md             # Documentación general del proyecto
+│   ├── raw/              # Archivos de datos originales sin modificar
+│   └── processed/        # Datasets transformados, limpios y resumidos
+│
+├── notebooks/
+│   └── 01_exploracion.ipynb   # Exploración inicial, limpieza de datos y EDA preliminar
+│
+├── src/                  # Funciones auxiliares, scripts de procesamiento y lógica Python
+│
+├── figures/              # Gráficos generados, exportaciones estáticas y diagramas
+│
+├── app/                  # Aplicación interactiva final (Streamlit / Plotly Dashboard)
+│
+├── README.md             # Documentación principal del proyecto (este archivo)
+└── .gitignore            # Archivos excluidos del control de versiones
