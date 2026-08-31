@@ -8,7 +8,7 @@
 
 ---
 
-## 📋 Diapositiva 1: Proyecto, Problema y Motivación
+## 1: Proyecto, Problema y Motivación
 
 * **Nombre del Proyecto:** Análisis de Movilidad y Patrones de Uso en Sistemas de Bicicletas Compartidas (*Capital Bikeshare*).
 * **Integrantes:** Martin Lobos *(y equipo)*.
@@ -18,7 +18,7 @@
 
 ---
 
-## 🎯 Diapositiva 2: Pregunta y Alcance
+## 2: Pregunta y Alcance
 
 * **Pregunta Principal:**  
   > ¿De qué manera varían la demanda, la duración de los trayectos y los patrones temporales de uso del sistema de bicicletas compartidas entre usuarios registrados y casuales según la hora, el día de la semana y las estaciones de origen/destino?
@@ -32,7 +32,7 @@
 
 ---
 
-## 📐 Diapositiva 3: Estructura X, Y y T
+## 3: Estructura X, Y y T
 
 ### Identificación de Componentes
 * **$X$ (Variables Explicativas / Información Disponible):**
@@ -52,7 +52,7 @@ La estructura conecta los datos de entrada **($X$)** con el fenómeno analizado 
 
 ---
 
-## 📊 Diapositiva 4: Dataset y Narrativa Inicial
+## 4: Dataset y Narrativa Inicial
 
 * **Fuente de los Datos:** Registro histórico procesado del sistema *Capital Bikeshare* (Washington D.C.).
 * **Cantidad Aproximada de Registros:** ~650.000 filas / trayectos registrados.
@@ -77,7 +77,7 @@ La estructura conecta los datos de entrada **($X$)** con el fenómeno analizado 
 
 ---
 
-## 🎨 Diapositiva 5: Pregunta, Datos y Potencial Visual
+## 5: Pregunta, Datos y Potencial Visual
 
 ### Coherencia entre Pregunta y Datos
 * **Variables $X$ (Explicativas):** `Member Type` (segmentación del perfil), `Start Station` / `End Station` (origen-destino espacial) y `Bike Number`.
